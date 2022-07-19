@@ -8,7 +8,6 @@ namespace VirtualGameService.Entities
 {
     internal class Sale:BaseEntities
     {
-        public int Id { get; set; }
         public int CustomerId { get; set; }
         public int GameId { get; set; }
         public int CampaignId { get; set; }
