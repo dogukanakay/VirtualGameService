@@ -1,6 +1,10 @@
 ﻿using System;
 using VirtualGameService.Abstracts;
 using VirtualGameService.Entities;
+using VirtualGameService.Concrete;
+using ServiceReference1;
+using VirtualGameService.Adapters;
+
 
 
 namespace VirtualGameService
@@ -11,7 +15,10 @@ namespace VirtualGameService
         {
             Player player1 = new Player();
             player1.Id = 134;
-            player1.Name = "Dood";
+            player1.Name = "Doğukan";
+            player1.Surname = "Akay";
+            player1.Birthday = new  DateTime(199, 2, 3);
+            player1.NationalityId = "189115931421";
             Game game1 = new Game();
             game1.Id = 5;
             game1.Price = 30;
@@ -27,7 +34,7 @@ namespace VirtualGameService
             sale1.TotalPaid = game1.Price - game1.Price * campaign1.DiscountRate / 100;
 
 
-            Service playerService = new PlayerService();
+            Service playerService = new PlayerService( new MernisServiceAdapter() );
             playerService.Add(player1);
             Service saleService = new SaleService();
             saleService.Add(sale1);

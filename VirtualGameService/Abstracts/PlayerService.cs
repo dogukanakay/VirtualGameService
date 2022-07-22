@@ -9,9 +9,22 @@ namespace VirtualGameService.Abstracts
 {
     internal class PlayerService : Service
     {
+        IPlayerCheckService _playerCheckService;
+        public PlayerService(IPlayerCheckService playerCheckService)
+        {
+            _playerCheckService = playerCheckService;
+        }   
+
         public override void Add(BaseEntities entities)
         {
-            Console.WriteLine(entities.Id+" ID "+"Player added.");
+            if (_playerCheckService.CheckIfRealPlayer((Player)entities))
+            {
+                Console.WriteLine(entities.Id + " ID " + "Player added.");
+            }
+            else
+            {
+                Console.WriteLine("The entered information did not match.");
+            }
             
         }
         public override void Delete(BaseEntities entities)
